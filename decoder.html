@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Encoder & Decoder</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+<script>
+    var i = '\',.pyfgcrl/=\\aoeuidhtns-;qjkxbmwvz"<>PYFGCRL?+|AOEUIDHTNS_:QJKXBMWVZ[]1234567890{}'.split('');
+    var o = 'qwertyuiop[]\\asdfghjkl;\'zxcvbnm,./QWERTYUIOP{}|ASDFGHJKL:"ZXCVBNM<>?-=0987654321_+'.split('');
+    function tr(s) {
+        r = '';
+        jQuery.each(s.split(''), function() {
+            var t = this.toString();
+            var c = jQuery.inArray(t, i);
+            r += '$' == t ? n : (-1 == c ? t : o[c])
+        });
+        return r;
+    };
+    function rt(s) {
+        r = '';
+        jQuery.each(s.split(''), function() {
+            var t = this.toString();
+            var c = jQuery.inArray(t, o);
+            r += '$' == t ? n : (-1 == c ? t : i[c])
+        });
+        return r;
+    };
+    function decode() {
+        var code = $('#code').val();
+        $("#code").val(tr(code));
+    }
+    function encode() {
+        var code = $('#code').val();
+        $("#code").val(rt(code));
+    }
+</script>
+<textarea id="code" cols="80" rows="8" style="height: 400px; font-size: 20px;"></textarea>
+<p>
+    <input type="button" onclick="decode()" value="解码">
+    <input type="button" onclick="encode()" value="编码">
+</p>
+</body>
+</html>
